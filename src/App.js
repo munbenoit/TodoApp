@@ -3,22 +3,23 @@ import './App.css';
 import Todos from './components/Todos'
 import AddTodo from './components/AddTodo'
 import Header from './components/layout/Header'
+import uuid from 'uuid'
 
 class App extends Component {
   state = {
     todos: [
       {
-        id: 1,
+        id: uuid.v4(),
         title : "Initialize Wordpress",
         completed : false
       },
       {
-        id: 2,
+        id: uuid.v4(),
         title : "Start the React Tutorial",
         completed : true
       },
       {
-        id: 3,
+        id: uuid.v4(),
         title : "Start the Next app",
         completed : false
       }
@@ -40,12 +41,24 @@ class App extends Component {
   })
   }
 
+  
+
+  addTodo = (title) => {
+
+    const newTodo = {
+      id: uuid.v4(),
+      title,
+      completed: false 
+    }
+    this.setState({todos: [...this.state.todos, newTodo]})
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header />
-          <AddTodo />
+          <AddTodo addTodo={this.addTodo}/>
           <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
         </div>
       </div>
