@@ -68,7 +68,6 @@ class App extends Component {
               </React.Fragment>
             )}/>
             <Route exact path='/about' component={About}/>
-
           </div>
         </div>
 
